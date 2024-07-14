@@ -1,0 +1,24 @@
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<uses-permission android:name="android.permission.VIBRATE" />
+
+<application
+    android:label="alarm_clock_app"
+    android:icon="@mipmap/ic_launcher">
+    <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ActionReceiver"/>
+    <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.DismissedReceiver"/>
+    <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ScheduledAlarmReceiver"
+        android:permission="android.permission.WAKE_LOCK"/>
+    <service android:name="com.dexterous.flutterlocalnotifications.services.ScheduledAlarmService"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:exported="true"/>
+    <receiver android:enabled="true"
+        android:exported="true"
+        android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+        android:label="Alarm Receiver">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+        </intent-filter>
+    </receiver>
+</application>
+
